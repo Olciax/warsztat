@@ -1,0 +1,23 @@
+{% extends 'mail/base.html' %}
+{% load staticfiles %}
+{% block title %}Książka @dresowa{% endblock %}
+{% block content %}
+<ul>
+    {% for info in person %}
+    <li>
+        <a href="{% url 'details' info.id %}" id="title"> {{ info.surname }} {{ info.name }} </a>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+        <a href={% url 'person-update' info.id %}> <i class="fas fa-user-edit"></i></a>
+
+            <form method="post" action="{% url 'person-delete' info.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-light">
+                    <i class="fas fa-user-times"></i>
+                </button>
+            </form>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

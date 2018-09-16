@@ -1,0 +1,32 @@
+{% extends 'mail/base.html' %}
+{% block title %}{{ person.surname }} {{ person.name }}{% endblock %}
+{% block content %}
+
+    <h2 id="info">{{ person.surname }} {{ person.name }}  </h2>
+
+    <div id="info2">
+
+    <ul>
+        Telefon
+        {% for t in tel %}
+        <li>{{ t.get_type_display }}: {{ t.number }}  </li>
+        {% endfor %}
+    </ul>
+    <hr id="hrinfo" />
+    <ul>
+        E-mail
+        {% for e in mail %}
+        <li> {{ e.get_type_display }}: {{ e.email }}</li>
+        {% endfor %}
+    </ul>
+    <hr id="hrinfo" />
+    <ul>
+        Adres
+        {% for a in adr %}
+
+        <li> {{ a }}</li>
+        {% endfor %}
+    </ul>
+
+    </div>
+{% endblock %}

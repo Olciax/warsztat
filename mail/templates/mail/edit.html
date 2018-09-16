@@ -1,0 +1,11 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+
+    <h2 id="info">Edytuj </h2>
+    {% csrf_token %}
+    <form  method="post">
+        <label>Imię:</label>
+        <input id="name" type="text" name="name" value="{{ person.name }}">
+        <input type="submit" value="Zapisz">
+    </form>
+{% endblock %}
