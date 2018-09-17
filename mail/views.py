@@ -19,40 +19,24 @@ def details(request, person_id):
     # person = Person.objects.get(pk=person_id)
     person = get_object_or_404(Person, pk=person_id)
     tel = Telephone.objects.filter(person=person)
-    adr = Address.objects.filter(person=person)
+    # adr = Address.objects.filter(person=person)
     mail = Email.objects.filter(person=person)
     ctx = {
         'person': person,
         'tel': tel,
-        'adr': adr,
         'mail': mail,
     }
     return render(request, 'mail/details.html', ctx)
 
-def edit(request, person_id):
-    person = Person.objects.get(pk=person_id)
-    tel = Telephone.objects.filter(person=person)
-    adr = Address.objects.filter(person=person)
-    mail = Email.objects.filter(person=person)
-    ctx = {
-        'person': person,
-        'tel': tel,
-        'adr': adr,
-        'mail': mail,
-    }
-    if request.method == "POST":
-        name = request.POST.get('name')
-        name = Person.objects.update(name=name)
 
-    return render(request, 'mail/edit.html', ctx)
 
 class PersonCreate(CreateView):
     model = Person
-    fields = ['name', 'surname', 'description', 'address']
+    fields = ['name', 'surname', 'description']
 
 class PersonUpdate(UpdateView):
     model = Person
-    fields = ['name', 'surname', 'description', 'address']
+    fields = ['name', 'surname', 'description']
 
 class Address(UpdateView):
     model = Address
